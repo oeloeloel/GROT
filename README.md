@@ -37,7 +37,8 @@ require 'app/grot_debug.rb'
 
 def prepare(args)
   args.state.prepared = true
-  GROT.debug(true)
+  GROT.debug(true) # must be called ONCE before GROT.tick_start
+  GROT.watch { format('Random number: %.3f', rand()) }
   GROT.watch { "It is #{Time.now}" }
 end
 
@@ -57,7 +58,7 @@ This will display the following information at the top of the DragonRuby screen:
 * DS (Default. The number of seconds taken to perform 60 ticks - try to keep it from going over 1)
 
 and the following items that were added to the watch list:
-`rand is 3`
+`Random Number: 0.837`
 `It is Fri Dec 18 22:55:20 2020`
 
 
