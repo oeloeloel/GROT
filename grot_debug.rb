@@ -21,8 +21,8 @@ $gtk.reset
 # end
 
 module GROT
-  def self.debug(active)
-    $grot_debug = active ? Debug.new : nil
+  def self.debug(active, color: [127, 127, 127, 255])
+    $grot_debug = active ? Debug.new(color = color) : nil
   end
 
   def self.tick_start
@@ -47,8 +47,9 @@ module GROT
   class Debug
     attr_accessor :watchlist
 
-    def initialize
+    def initialize(color)
       @watchlist = []
+      @color = color
 
       @tick_time = [0]
       @tick_time_sum = 0
@@ -91,7 +92,11 @@ module GROT
         {
           x: 5, y: 720 - (i * 20),
           text: watched.call,
-          size_enum: -1.5
+          size_enum: -1.5,
+          r: @color[0],
+          g: @color[1],
+          b: @color[2],
+          a: @color[3]
         }
       end
     end
