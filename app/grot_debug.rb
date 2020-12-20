@@ -22,7 +22,7 @@ $gtk.reset
 
 module GROT
   def self.debug(active, color: [127, 127, 127, 255])
-    $grot_debug = active ? Debug.new(color = color) : nil
+    $grot_debug = active ? Debug.new(color) : nil
   end
 
   def self.tick_start
